@@ -9,11 +9,15 @@ class LoginController {
   LoginRepository loginRepository;
   LoginController(this.loginRepository);
 
-  final TextEditingController loginUsernameController = TextEditingController(text: "alan");
-  final TextEditingController loginPasswordController = TextEditingController(text: "alan");
+  final TextEditingController loginUsernameController =
+      TextEditingController(text: "alan");
+  final TextEditingController loginPasswordController =
+      TextEditingController(text: "alan");
 
-  final TextEditingController registerUsernameController = TextEditingController();
-  final TextEditingController registerLoginPasswordController = TextEditingController();
+  final TextEditingController registerUsernameController =
+      TextEditingController();
+  final TextEditingController registerLoginPasswordController =
+      TextEditingController();
 
   String msg = '';
 
@@ -69,7 +73,7 @@ class LoginController {
     );
   }
 
-  goHome() {
-    Modular.to.pushNamed('/home/delivery');
-  }
+  goHome() => Modular.to.pushNamed('/home/delivery');
+
+  goSignup() => Modular.to.pushNamed('/signup');
 }

@@ -1,14 +1,14 @@
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_title.dart';
-import 'package:flutter_entregas/src/modules/login/login_controller.dart';
+import 'package:flutter_entregas/src/modules/signup/signup_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class SignupPage extends StatelessWidget {
+  SignupPage({Key? key}) : super(key: key);
 
-  final controller = Modular.get<LoginController>();
+  final controller = Modular.get<SignupController>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class LoginPage extends StatelessWidget {
                     indent: 200,
                     endIndent: 20,
                     height: 3)),
-            CustomTitle(text: 'Login'),
+            CustomTitle(text: 'Signup'),
             Expanded(
                 child: Divider(
                     color: Colors.white,
@@ -60,40 +60,23 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
               CustomTextFormFieldRectangular(
-                  controller: controller.loginUsernameController,
+                  controller: controller.registerUsernameController,
                   hintText: "Username"),
               const SizedBox(height: 10),
               const Text("Password",
                   style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
               CustomTextFormFieldRectangular(
-                  controller: controller.loginPasswordController,
+                  controller: controller.registerSignupPasswordController,
                   hintText: "Password"),
               const SizedBox(height: 20),
               Row(
                 children: [
                   CustomButton(
                       onPressed: () {
-                        controller.login();
+                        controller.createUser();
                       },
-                      text: "Entrar"),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Não possui uma conta ? "),
-                  TextButton(
-                    onPressed: () => controller.goSignup(),
-                    child: const Text(
-                      "Signup",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
+                      text: "Cadastrar"),
                 ],
               ),
               const SizedBox(height: 20),
@@ -119,7 +102,7 @@ class LoginPage extends StatelessWidget {
                 thickness: 1,
               ),
             ),
-            CustomTitle(text: 'Login'),
+            CustomTitle(text: 'Signup'),
             Expanded(
               child: Divider(
                 color: Colors.white,
@@ -147,40 +130,25 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
               CustomTextFormFieldRectangular(
-                  controller: controller.loginUsernameController,
+                  controller: controller.registerUsernameController,
                   hintText: "Username"),
               const SizedBox(height: 10),
               const Text("Password",
                   style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
               CustomTextFormFieldRectangular(
-                  controller: controller.loginPasswordController,
+                  controller: controller.registerSignupPasswordController,
                   hintText: "Password"),
               const SizedBox(height: 20),
               Row(
                 children: [
                   CustomButton(
-                    onPressed: () => controller.login(),
-                    text: "Entrar",
+                    onPressed: () => controller.createUser(),
+                    text: "Cadastrar",
                   ),
                 ],
               ),
               const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Não possui uma conta ? "),
-                  TextButton(
-                      onPressed: () => controller.goSignup(),
-                      child: const Text(
-                        "Signup",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 14,
-                        ),
-                      )),
-                ],
-              ),
             ],
           ),
         ),

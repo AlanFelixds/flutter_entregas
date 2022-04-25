@@ -5,7 +5,9 @@ class CustomTextFormFieldRectangular extends StatelessWidget {
   final String? hintText;
   final Widget? label;
 
-  const CustomTextFormFieldRectangular({Key? key, required this.controller, this.hintText, this.label}) : super(key: key);
+  const CustomTextFormFieldRectangular(
+      {Key? key, required this.controller, this.hintText, this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,12 @@ class CustomTextFormFieldRectangular extends StatelessWidget {
             ),
             label: label,
             hintText: hintText,
-            hintStyle: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
+            hintStyle:
+                const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 6,
+              horizontal: 12,
+            )),
       ),
     );
   }

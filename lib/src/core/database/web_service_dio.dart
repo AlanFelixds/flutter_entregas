@@ -7,7 +7,8 @@ class WebServiceDio {
   WebServiceDio(this.dio);
 
   dynamic clientDio() {
-    dio.options.baseUrl = "http://localhost:5000";
+    // dio.options.baseUrl = "http://localhost:5000";
+    dio.options.baseUrl = "http://192.168.2.108:5000";
     dio.options.connectTimeout = 5000;
     dio.options.contentType = "application/json";
     // dio.options.headers
