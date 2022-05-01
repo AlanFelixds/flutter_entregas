@@ -9,15 +9,11 @@ class LoginController {
   LoginRepository loginRepository;
   LoginController(this.loginRepository);
 
-  final TextEditingController loginUsernameController =
-      TextEditingController(text: "alan");
-  final TextEditingController loginPasswordController =
-      TextEditingController(text: "alan");
+  final TextEditingController loginUsernameController = TextEditingController(text: "alan");
+  final TextEditingController loginPasswordController = TextEditingController(text: "alan");
 
-  final TextEditingController registerUsernameController =
-      TextEditingController();
-  final TextEditingController registerLoginPasswordController =
-      TextEditingController();
+  final TextEditingController registerUsernameController = TextEditingController();
+  final TextEditingController registerLoginPasswordController = TextEditingController();
 
   String msg = '';
 
@@ -48,18 +44,22 @@ class LoginController {
     usuario.username = loginUsernameController.text;
     usuario.password = loginPasswordController.text;
 
-    String result = await loginRepository.login(
-      loginUsernameController.text,
-      loginPasswordController.text,
-    );
+    try {
+      await Modular.isModuleReady<AppModule>();
+      String result = await loginRepository.login(
+        loginUsernameController.text,
+        loginPasswordController.text,
+      );
 
-    await Modular.isModuleReady<AppModule>();
+      LocalStorage localStorage = await Modular.getAsync<LocalStorage>();
+      localStorage.save(chave: 'token', valor: result);
+      goHome();
+    } catch (e) {
+      throw Exception("usuario ou senha invalido");
+    }
 
-    LocalStorage localStorage = await Modular.getAsync<LocalStorage>();
-
-    localStorage.save(chave: 'token', valor: result);
-
-    goHome();
+    // if (result != null) {
+    // }
   }
 
   Future<void> createUser() async {

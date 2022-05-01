@@ -13,8 +13,7 @@ class HomeRepository {
   }
 
   Future<dynamic> calcularData(int tempo) async {
-    final response =
-        await webService.postResponseDio('/client/getTime', {"tempo": tempo});
+    final response = await webService.postResponseDio('/client/getTime', {"tempo": tempo});
     debugPrint("$response");
     return response;
   }
