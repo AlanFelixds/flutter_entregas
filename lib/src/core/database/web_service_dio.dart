@@ -1,5 +1,7 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_entregas/src/core/exception/login_exception.dart';
 
 class WebServiceDio {
   final Dio dio;
@@ -18,33 +20,44 @@ class WebServiceDio {
 
     try {
       Response response = await dio.post(url, data: body);
-      return response.data;
+      return checkResponse(response);
     } on DioError catch (e) {
-      return manageResponse(e.response!);
+      return checkResponse(e.response!);
     }
   }
 
   Future<dynamic> getResponseDio(String url) async {
     await clientDio();
-    Response response = await dio.get(url);
-    return manageResponse(response);
+
+    try {
+      Response response = await dio.get(url);
+      return checkResponse(response);
+    } on DioError catch (e) {
+      return checkResponse(e.response!);
+    }
   }
 
-  dynamic manageResponse(Response response) {
-    debugPrint("${response.statusCode}");
+  dynamic checkResponse(Response response) {
     switch (response.statusCode) {
       case 200:
         return response.data;
+      // return "Requisição feita com sucesso.";
+      case 201:
+        return "Requisição feita com sucesso e dados criado com sucesso.";
       case 400:
-        throw 'Não autorizado';
+        print(response.statusCode);
+        throw LoginException(response.data['message']);
+      // return "Requisição falhou, verifique os dados passados.";
       case 401:
-        throw 'Não autorizado';
+        return "Usuário não encontrado, verifique seu usuário e senha.";
       case 403:
-        throw 'Não autorizado';
+        return "Usuário não autorizado, verifique com o administrador seu acesso ao conteúdo.";
+      case 404:
+        return "Recurso não encontrado.";
       case 500:
-        throw 'Falha no servidor';
+        return "Erro interno no servidor, tente novamente em alguns minutos.";
       default:
-        throw 'THROW';
+        throw 'Erro padrão, Throw.';
     }
   }
 }

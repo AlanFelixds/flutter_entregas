@@ -55,11 +55,8 @@ class LoginController {
       localStorage.save(chave: 'token', valor: result);
       goHome();
     } catch (e) {
-      throw Exception("usuario ou senha invalido");
+      debugPrint("m: ${e.toString()}");
     }
-
-    // if (result != null) {
-    // }
   }
 
   Future<void> createUser() async {

@@ -16,30 +16,20 @@ class LoginPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      body: sizeWidget > 600 ? uiDesktop() : uiMobile(),
+      body: sizeWidget > 600 ? uiDesktop(context) : uiMobile(),
     );
   }
 
-  Widget uiDesktop() {
+  Widget uiDesktop(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           children: const [
-            Expanded(
-                child: Divider(
-                    color: Colors.white,
-                    indent: 200,
-                    endIndent: 20,
-                    height: 3)),
+            Expanded(child: Divider(color: Colors.white, indent: 200, endIndent: 20, height: 3)),
             CustomTitle(text: 'Login'),
-            Expanded(
-                child: Divider(
-                    color: Colors.white,
-                    indent: 20,
-                    endIndent: 200,
-                    height: 3)),
+            Expanded(child: Divider(color: Colors.white, indent: 20, endIndent: 200, height: 3)),
           ],
         ),
         const SizedBox(height: 30),
@@ -56,19 +46,13 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Text("Username",
-                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
+              const Text("Username", style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
-              CustomTextFormFieldRectangular(
-                  controller: controller.loginUsernameController,
-                  hintText: "Username"),
+              CustomTextFormFieldRectangular(controller: controller.loginUsernameController, hintText: "Username"),
               const SizedBox(height: 10),
-              const Text("Password",
-                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
+              const Text("Password", style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
-              CustomTextFormFieldRectangular(
-                  controller: controller.loginPasswordController,
-                  hintText: "Password"),
+              CustomTextFormFieldRectangular(controller: controller.loginPasswordController, hintText: "Password"),
               const SizedBox(height: 20),
               Row(
                 children: [
@@ -143,19 +127,13 @@ class LoginPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Username",
-                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
+              const Text("Username", style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
-              CustomTextFormFieldRectangular(
-                  controller: controller.loginUsernameController,
-                  hintText: "Username"),
+              CustomTextFormFieldRectangular(controller: controller.loginUsernameController, hintText: "Username"),
               const SizedBox(height: 10),
-              const Text("Password",
-                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
+              const Text("Password", style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic)),
               const SizedBox(height: 5),
-              CustomTextFormFieldRectangular(
-                  controller: controller.loginPasswordController,
-                  hintText: "Password"),
+              CustomTextFormFieldRectangular(controller: controller.loginPasswordController, hintText: "Password"),
               const SizedBox(height: 20),
               Row(
                 children: [
