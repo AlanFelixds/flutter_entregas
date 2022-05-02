@@ -45,9 +45,7 @@ class WebServiceDio {
       case 201:
         return "Requisição feita com sucesso e dados criado com sucesso.";
       case 400:
-        print(response.statusCode);
         throw LoginException(response.data['message']);
-      // return "Requisição falhou, verifique os dados passados.";
       case 401:
         return "Usuário não encontrado, verifique seu usuário e senha.";
       case 403:

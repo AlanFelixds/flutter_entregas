@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_entregas/src/app_module.dart';
 import 'package:flutter_entregas/src/core/local_storage/shared_preferences.dart';
 import 'package:flutter_entregas/src/core/models/user_model.dart';
+import 'package:flutter_entregas/src/core/widgets/dialogs/dialog_message.dart';
 import 'package:flutter_entregas/src/modules/login/login_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -55,7 +56,7 @@ class LoginController {
       localStorage.save(chave: 'token', valor: result);
       goHome();
     } catch (e) {
-      debugPrint("m: ${e.toString()}");
+      // DialogMessage.errorMessage(message: e.toString());
     }
   }
 

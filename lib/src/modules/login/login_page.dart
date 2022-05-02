@@ -1,6 +1,7 @@
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_title.dart';
+import 'package:flutter_entregas/src/core/widgets/dialogs/dialog_message.dart';
 import 'package:flutter_entregas/src/modules/login/login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class LoginPage extends StatelessWidget {
                   CustomButton(
                       onPressed: () {
                         controller.login();
+                        ScaffoldMessenger.of(context).showSnackBar(DialogMessage.errorMessage(message: "teste"));
                       },
                       text: "Entrar"),
                 ],
