@@ -2,17 +2,23 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_entregas/src/core/exception/login_exception.dart';
+import 'package:flutter_entregas/src/core/local_storage/shared_preferences.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class WebServiceDio {
   final Dio dio;
 
   WebServiceDio(this.dio);
 
-  dynamic clientDio() {
-    // dio.options.baseUrl = "http://localhost:5000";
-    dio.options.baseUrl = "http://192.168.2.108:5000";
+  dynamic clientDio() async {
+    LocalStorage local = Modular.get<LocalStorage>();
+    String? token = await local.read(chave: 'token');
+
+    dio.options.baseUrl = "http://localhost:5000";
+    // dio.options.baseUrl = "http://192.168.2.108:5000";
     dio.options.connectTimeout = 5000;
     dio.options.contentType = "application/json";
+    dio.options.headers["Authorization"] = "Beares $token";
   }
 
   Future<dynamic> postResponseDio(String url, Map body) async {
@@ -41,7 +47,6 @@ class WebServiceDio {
     switch (response.statusCode) {
       case 200:
         return response.data;
-      // return "Requisição feita com sucesso.";
       case 201:
         return "Requisição feita com sucesso e dados criado com sucesso.";
       case 400:

@@ -15,8 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        AsyncBind<SharedPreferences>(
-            (i) async => SharedPreferences.getInstance()),
+        AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
         AsyncBind((i) async => LocalStorage(i())),
         Bind.factory((i) => Dio()),
         Bind.factory((i) => WebService()),
@@ -29,7 +28,7 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/login', child: (context, args) => LoginPage()),
+        ChildRoute('/login', child: (context, args) => const LoginPage()),
         ChildRoute('/signup', child: (context, args) => SignupPage()),
         ModuleRoute('/home', module: HomeModule()),
       ];

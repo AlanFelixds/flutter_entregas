@@ -5,13 +5,25 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final controller = Modular.get<HomeController>();
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  final controller = Modular.get<HomeController>();
+
+  @override
+  void initState() {
+    super.initState();
+    debugPrint("-- Home Page iniciado --");
+    controller.buscarDeliveries();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFF636Ec5),
       body: SafeArea(
@@ -52,6 +64,13 @@ class HomePage extends StatelessWidget {
                           const SizedBox(height: 15),
                         ],
                       ),
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      width: 300,
+                      height: 200,
+                      color: Colors.green[200],
+                      child: const Text("Lista de Eventos..."),
                     ),
                   ],
                 ),

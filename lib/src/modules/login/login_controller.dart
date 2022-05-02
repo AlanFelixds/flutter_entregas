@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_entregas/src/app_module.dart';
+import 'package:flutter_entregas/src/core/exception/login_exception.dart';
 import 'package:flutter_entregas/src/core/local_storage/shared_preferences.dart';
 import 'package:flutter_entregas/src/core/models/user_model.dart';
-import 'package:flutter_entregas/src/core/widgets/dialogs/dialog_message.dart';
 import 'package:flutter_entregas/src/modules/login/login_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:get/state_manager.dart';
 
 class LoginController {
   LoginRepository loginRepository;
@@ -16,7 +17,7 @@ class LoginController {
   final TextEditingController registerUsernameController = TextEditingController();
   final TextEditingController registerLoginPasswordController = TextEditingController();
 
-  String msg = '';
+  final RxString msg = ''.obs;
 
   // Future<void> login() async {
   //   if (emailController.text == 'a' && passwordController.text == 'a') {
@@ -40,13 +41,12 @@ class LoginController {
   //   msg = 'usuário não encontrado';
   // }
 
-  Future<void> login() async {
+  Future<bool> login() async {
     UserModel usuario = UserModel();
     usuario.username = loginUsernameController.text;
     usuario.password = loginPasswordController.text;
 
     try {
-      await Modular.isModuleReady<AppModule>();
       String result = await loginRepository.login(
         loginUsernameController.text,
         loginPasswordController.text,
@@ -55,8 +55,10 @@ class LoginController {
       LocalStorage localStorage = await Modular.getAsync<LocalStorage>();
       localStorage.save(chave: 'token', valor: result);
       goHome();
-    } catch (e) {
-      // DialogMessage.errorMessage(message: e.toString());
+      return true;
+    } on LoginException catch (e) {
+      msg.value = e.message;
+      return false;
     }
   }
 

@@ -8,30 +8,18 @@ class HomeController extends GetxController {
   HomeRepository homeRepository;
   HomeController(this.homeRepository);
 
-  final String? tt = null;
-
   TextEditingController itemNameController = TextEditingController();
-  TextEditingController tempoController = TextEditingController(text: "2018-12-01 00:00:00.000");
-
-  final Rx<DateTime> primeiroDia = DateTime.now().obs;
-  final Rx<DateTime> ultimoDia = DateTime.now().obs;
 
   Future<void> createDelivery() async {
     ProductModel product = ProductModel();
-
     product.itemName = itemNameController.text;
-
     final result = await homeRepository.createDelivery(product);
-    debugPrint('Home Controller ===> $result');
+    debugPrint('Create delivery ===> $result');
   }
 
-  Future<void> calcularTempo() async {
-    //2012-02-27 13:27:00
-    final intDate = DateTime.parse(tempoController.text).millisecondsSinceEpoch;
-    final result = await homeRepository.calcularData(intDate);
-
-    primeiroDia.value = DateTime.fromMillisecondsSinceEpoch(result['primeiro']);
-    ultimoDia.value = DateTime.fromMillisecondsSinceEpoch(result['ultimo']);
+  Future<void> buscarDeliveries() async {
+    final result = await homeRepository.buscarDeliveries();
+    debugPrint('buscar todos deliveries ===> $result');
   }
 
   void goToCadastrarEventos() {

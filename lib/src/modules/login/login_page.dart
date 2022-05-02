@@ -1,3 +1,4 @@
+import 'package:flutter_entregas/src/app_module.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_title.dart';
@@ -6,10 +7,21 @@ import 'package:flutter_entregas/src/modules/login/login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final controller = Modular.get<LoginController>();
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 2)).then((value) async => await Modular.isModuleReady<AppModule>());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +70,8 @@ class LoginPage extends StatelessWidget {
               Row(
                 children: [
                   CustomButton(
-                      onPressed: () {
-                        controller.login();
-                        ScaffoldMessenger.of(context).showSnackBar(DialogMessage.errorMessage(message: "teste"));
+                      onPressed: () async {
+                        await controller.login() ? null : ScaffoldMessenger.of(context).showSnackBar(DialogMessage.errorMessage(message: controller.msg.value));
                       },
                       text: "Entrar"),
                 ],

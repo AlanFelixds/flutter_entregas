@@ -6,7 +6,7 @@ class DialogMessage {
       content: Text(message),
       elevation: 3,
       backgroundColor: Colors.red[300],
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 1),
     );
   }
 }
