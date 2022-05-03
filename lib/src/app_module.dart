@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_entregas/src/core/database/web_service.dart';
-import 'package:flutter_entregas/src/core/database/web_service_dio.dart';
-import 'package:flutter_entregas/src/core/local_storage/shared_preferences.dart';
+import 'package:flutter_entregas/src/core/database/interface_web_client.dart';
+import 'package:flutter_entregas/src/core/database/web_client_dio.dart';
 import 'package:flutter_entregas/src/modules/home_client/home_module.dart';
 import 'package:flutter_entregas/src/modules/login/login_controller.dart';
 import 'package:flutter_entregas/src/modules/login/login_page.dart';
@@ -15,15 +14,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AppModule extends Module {
   @override
   List<Bind<Object>> get binds => [
+        //GLOBAL
         AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
-        AsyncBind((i) async => LocalStorage(i())),
+
+        //CLIENTE HTTP
         Bind.factory((i) => Dio()),
-        Bind.factory((i) => WebService()),
-        Bind.factory((i) => WebServiceDio(i())),
+        Bind.factory<IWebClient>((i) => WebClientDio(i())),
+
+        //LOGIN
         Bind.singleton((i) => LoginController(i())),
         Bind.singleton((i) => LoginRepository(i())),
-        Bind.singleton((i) => SignupRepository(i())),
+
+        //SINGUP
         Bind.singleton((i) => SignupController(i())),
+        Bind.singleton((i) => SignupRepository(i())),
       ];
 
   @override

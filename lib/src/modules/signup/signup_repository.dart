@@ -1,11 +1,11 @@
-import 'package:flutter_entregas/src/core/database/web_service_dio.dart';
+import 'package:flutter_entregas/src/core/database/interface_web_client.dart';
 
 class SignupRepository {
-  WebServiceDio webService;
-  SignupRepository(this.webService);
+  final IWebClient _webService;
+  SignupRepository(this._webService);
 
   Future<dynamic> register(String username, String password) async {
-    final response = await webService.postResponseDio('/client', {
+    final response = await _webService.post(url: '/client', body: {
       'username': username,
       'password': password,
     });

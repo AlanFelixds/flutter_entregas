@@ -52,7 +52,7 @@ class LoginController {
         loginPasswordController.text,
       );
 
-      LocalStorage localStorage = await Modular.getAsync<LocalStorage>();
+      LocalStorage localStorage = Modular.get<LocalStorage>();
       localStorage.save(chave: 'token', valor: result);
       goHome();
       return true;
@@ -60,17 +60,6 @@ class LoginController {
       msg.value = e.message;
       return false;
     }
-  }
-
-  Future<void> createUser() async {
-    UserModel user = UserModel();
-    user.username = registerUsernameController.text;
-    user.password = registerLoginPasswordController.text;
-
-    await loginRepository.register(
-      registerUsernameController.text,
-      registerLoginPasswordController.text,
-    );
   }
 
   goHome() => Modular.to.pushNamed('/home/delivery');
