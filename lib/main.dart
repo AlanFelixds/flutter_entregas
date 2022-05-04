@@ -13,20 +13,4 @@ void main() async {
       child: const AppWidget(),
     ),
   );
-  // runApp(FutureBuilder(
-  //   future: Modular.isModuleReady<AppModule>(),
-  //   builder: (context, snapshot) {
-  //     if (snapshot.connectionState == ConnectionState.waiting) {
-  //       print("object2");
-  //     } else if (snapshot.connectionState == ConnectionState.done) {
-  //       return ModularApp(
-  //         module: AppModule(),
-  //         child: const AppWidget(),
-  //       );
-  //     } else if (snapshot.connectionState == ConnectionState.active) {
-  //     } else if (snapshot.connectionState == ConnectionState.none) {}
-
-  //     return Container();
-  //   },
-  // ));
 }

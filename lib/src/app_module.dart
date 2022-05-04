@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_entregas/src/core/database/interface_web_client.dart';
 import 'package:flutter_entregas/src/core/database/web_client_dio.dart';
+import 'package:flutter_entregas/src/core/storage/local.dart';
+import 'package:flutter_entregas/src/modules/home_client/home_controller.dart';
 import 'package:flutter_entregas/src/modules/home_client/home_module.dart';
+import 'package:flutter_entregas/src/modules/home_client/home_page.dart';
+import 'package:flutter_entregas/src/modules/home_client/home_repository.dart';
 import 'package:flutter_entregas/src/modules/login/login_controller.dart';
 import 'package:flutter_entregas/src/modules/login/login_page.dart';
 import 'package:flutter_entregas/src/modules/login/login_repository.dart';
@@ -15,7 +19,8 @@ class AppModule extends Module {
   @override
   List<Bind<Object>> get binds => [
         //GLOBAL
-        AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
+        AsyncBind((i) => SharedPreferences.getInstance()),
+        Bind.singleton((i) => Local()),
 
         //CLIENTE HTTP
         Bind.factory((i) => Dio()),
@@ -28,12 +33,17 @@ class AppModule extends Module {
         //SINGUP
         Bind.singleton((i) => SignupController(i())),
         Bind.singleton((i) => SignupRepository(i())),
+
+        //HOME
+        Bind.singleton((i) => HomeController(i())),
+        Bind.singleton((i) => HomeRepository(i())),
       ];
 
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/login', child: (context, args) => const LoginPage()),
         ChildRoute('/signup', child: (context, args) => SignupPage()),
-        ModuleRoute('/home', module: HomeModule()),
+        ChildRoute('/home', child: (context, args) => const HomePage()),
+        // ModuleRoute('/home', module: HomeModule()),
       ];
 }

@@ -18,12 +18,6 @@ class _LoginPageState extends State<LoginPage> {
   final controller = Modular.get<LoginController>();
 
   @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 2)).then((value) async => await Modular.isModuleReady<AppModule>());
-  }
-
-  @override
   Widget build(BuildContext context) {
     final sizeWidget = MediaQuery.of(context).size.width;
 

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
 import 'package:flutter_entregas/src/modules/home_client/home_controller.dart';
@@ -14,11 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = Modular.get<HomeController>();
+  RxString nome = "".obs;
 
   @override
   void initState() {
     super.initState();
-    debugPrint("-- Home Page iniciado --");
     controller.buscarDeliveries();
   }
 
@@ -55,7 +56,10 @@ class _HomePageState extends State<HomePage> {
                           Row(
                             children: [
                               CustomButton(
-                                onPressed: () => controller.createDelivery(),
+                                onPressed: () async {
+                                  await controller.createDelivery();
+                                  await controller.buscarDeliveries();
+                                },
                                 height: 25,
                                 text: "New Delivery",
                               ),
@@ -70,7 +74,16 @@ class _HomePageState extends State<HomePage> {
                       width: 300,
                       height: 200,
                       color: Colors.green[200],
-                      child: const Text("Lista de Eventos..."),
+                      child: Obx(() {
+                        return ListView.builder(
+                          itemCount: controller.deliveries.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text("${controller.deliveries[index]['item_name']}"),
+                            );
+                          },
+                        );
+                      }),
                     ),
                   ],
                 ),

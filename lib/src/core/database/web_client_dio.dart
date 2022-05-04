@@ -2,8 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_entregas/src/core/database/interface_web_client.dart';
 import 'package:flutter_entregas/src/core/exception/login_exception.dart';
-import 'package:flutter_entregas/src/core/local_storage/shared_preferences.dart';
+import 'package:flutter_entregas/src/core/storage/local.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WebClientDio implements IWebClient {
   final Dio _webDio;
@@ -12,13 +13,12 @@ class WebClientDio implements IWebClient {
 
   @override
   dynamic clientConfiguration() async {
-    final LocalStorage prefes = Modular.get<LocalStorage>();
-    final token = await prefes.read(chave: 'token');
+    final local = Modular.get<Local>();
+    final token = await local.read(chave: 'token');
 
     _webDio.options.baseUrl = "http://localhost:5000";
-    _webDio.options.connectTimeout = 5000;
-    _webDio.options.headers["Authorization"] = "Beares $token";
     _webDio.options.contentType = "application/json";
+    _webDio.options.headers["Authorization"] = "Beares $token";
   }
 
   @override
@@ -35,7 +35,7 @@ class WebClientDio implements IWebClient {
     return checkResponse(result);
   }
 
-  dynamic checkResponse(Response response) {
+  Future<dynamic> checkResponse(Response response) async {
     switch (response.statusCode) {
       case 200:
         return response.data;

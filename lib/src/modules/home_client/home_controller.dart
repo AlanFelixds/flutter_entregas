@@ -10,16 +10,23 @@ class HomeController extends GetxController {
 
   TextEditingController itemNameController = TextEditingController();
 
+  RxString nome = ''.obs;
+  RxList deliveries = [].obs;
+
   Future<void> createDelivery() async {
     ProductModel product = ProductModel();
     product.itemName = itemNameController.text;
-    final result = await homeRepository.createDelivery(product);
-    debugPrint('Create delivery ===> $result');
+    await homeRepository.createDelivery(product);
   }
 
   Future<void> buscarDeliveries() async {
+    deliveries.clear();
     final result = await homeRepository.buscarDeliveries();
-    debugPrint('buscar todos deliveries ===> $result');
+    // nome.value = result[0]['username'];
+    // debugPrint("${result[0]['deliveries']}");
+    // deliveries.add(result[0]['deliveries']);
+    deliveries.addAll(result[0]['deliveries']);
+    debugPrint("${deliveries}");
   }
 
   void goToCadastrarEventos() {

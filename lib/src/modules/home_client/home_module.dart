@@ -6,8 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 class HomeModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.singleton((i) => HomeRepository(i())),
         Bind.singleton((i) => HomeController(i())),
+        Bind.singleton((i) => HomeRepository(i())),
       ];
 
   @override
