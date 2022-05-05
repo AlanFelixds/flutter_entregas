@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
+import 'package:flutter_entregas/src/core/widgets/dialogs_form/dialog_teste.dart';
 import 'package:flutter_entregas/src/modules/home_client/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -79,7 +80,22 @@ class _HomePageState extends State<HomePage> {
                           itemCount: controller.deliveries.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Text("${controller.deliveries[index]['item_name']}"),
+                              title: Material(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.green,
+                                elevation: 3,
+                                child: InkWell(
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return NewDialog();
+                                      },
+                                    );
+                                  },
+                                  child: Text("${controller.deliveries[index]['item_name']}"),
+                                ),
+                              ),
                             );
                           },
                         );

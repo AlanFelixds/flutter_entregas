@@ -22,11 +22,7 @@ class HomeController extends GetxController {
   Future<void> buscarDeliveries() async {
     deliveries.clear();
     final result = await homeRepository.buscarDeliveries();
-    // nome.value = result[0]['username'];
-    // debugPrint("${result[0]['deliveries']}");
-    // deliveries.add(result[0]['deliveries']);
     deliveries.addAll(result[0]['deliveries']);
-    debugPrint("${deliveries}");
   }
 
   void goToCadastrarEventos() {
