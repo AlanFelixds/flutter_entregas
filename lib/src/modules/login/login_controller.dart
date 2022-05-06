@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_entregas/src/core/exception/login_exception.dart';
 import 'package:flutter_entregas/src/core/models/user_model.dart';
@@ -32,6 +34,12 @@ class LoginController {
         usuario.password!,
       );
 
+      final token = result.split(".")[1];
+
+      var payload = utf8.decode(base64.decode(base64.normalize(token)));
+      print(token);
+      print(jsonDecode(payload)['username']);
+
       // prefes.setString('token', result);
       local.save(chave: 'token', valor: result);
       goHome();
@@ -42,7 +50,7 @@ class LoginController {
     }
   }
 
-  goHome() => Modular.to.pushNamed('/home');
+  goHome() => Modular.to.pushNamed('/home/solicitacoes');
 
   goSignup() => Modular.to.pushNamed('/signup');
 }

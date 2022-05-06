@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
 import 'package:flutter_entregas/src/core/widgets/dialogs_form/dialog_teste.dart';
@@ -21,7 +20,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    controller.buscarDeliveries();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      controller.buscarDeliveries();
+    });
+    // Future.delayed(const Duration(seconds: 3)).then((value) {});
+    // controller.buscarDeliveries();
   }
 
   @override
