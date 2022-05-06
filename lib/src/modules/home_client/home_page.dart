@@ -1,6 +1,7 @@
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
 import 'package:flutter_entregas/src/core/widgets/dialogs_form/dialog_teste.dart';
+import 'package:flutter_entregas/src/core/widgets/icon_button/custom_icon_buttom.dart';
 import 'package:flutter_entregas/src/modules/home_client/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -77,27 +78,27 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       width: 300,
                       height: 200,
-                      color: Colors.green[200],
+                      color: Colors.white,
                       child: Obx(() {
                         return ListView.builder(
                           itemCount: controller.deliveries.length,
                           itemBuilder: (context, index) {
                             return ListTile(
-                              title: Material(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.green,
-                                elevation: 3,
-                                child: InkWell(
-                                  onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return NewDialog();
-                                      },
-                                    );
-                                  },
-                                  child: Text("${controller.deliveries[index]['item_name']}"),
+                              hoverColor: Colors.grey,
+                              title: Text(
+                                "${controller.deliveries[index]['item_name']}".capitalizeFirst ?? "",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontStyle: FontStyle.italic,
                                 ),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CustomIconButtom(icon: const Icon(Icons.person_add_alt_rounded), onPressed: () {}),
+                                  CustomIconButtom(icon: const Icon(Icons.delete_forever_rounded), onPressed: () {}),
+                                ],
                               ),
                             );
                           },

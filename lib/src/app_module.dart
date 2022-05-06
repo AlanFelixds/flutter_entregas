@@ -11,6 +11,7 @@ import 'package:flutter_entregas/src/modules/root/root_module.dart';
 import 'package:flutter_entregas/src/modules/signup/signup_controller.dart';
 import 'package:flutter_entregas/src/modules/signup/signup_page.dart';
 import 'package:flutter_entregas/src/modules/signup/signup_repository.dart';
+import 'package:flutter_entregas/src/modules/unknown/unknown_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,18 +33,13 @@ class AppModule extends Module {
         //SINGUP
         Bind.singleton((i) => SignupController(i())),
         Bind.singleton((i) => SignupRepository(i())),
-
-        //HOME
-        Bind.singleton((i) => HomeController(i())),
-        Bind.singleton((i) => HomeRepository(i())),
       ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/login', child: (context, args) => const LoginPage()),
-        ChildRoute('/signup', child: (context, args) => SignupPage()),
-        ModuleRoute('/home', module: RootModule()),
-
-        // ModuleRoute('/home', module: HomeModule()),
+        ChildRoute('/login', child: (context, args) => const LoginPage(), transition: TransitionType.noTransition),
+        ChildRoute('/signup', child: (context, args) => SignupPage(), transition: TransitionType.noTransition),
+        ModuleRoute('/home', module: RootModule(), transition: TransitionType.noTransition),
+        WildcardRoute(child: (contex, args) => const UnknownPage()),
       ];
 }

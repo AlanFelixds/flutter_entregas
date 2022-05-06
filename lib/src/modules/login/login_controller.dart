@@ -50,7 +50,7 @@ class LoginController {
     }
   }
 
-  goHome() => Modular.to.pushNamed('/home/solicitacoes');
+  goHome() => Modular.to.navigate('/home/dashboard');
 
   goSignup() => Modular.to.pushNamed('/signup');
 }

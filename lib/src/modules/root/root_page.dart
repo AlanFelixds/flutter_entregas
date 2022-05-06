@@ -1,3 +1,4 @@
+import 'package:flutter_entregas/src/core/widgets/drawer/menu_list_tile.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 
@@ -15,32 +16,36 @@ class RootPage extends StatelessWidget {
               width: 300,
               child: Column(
                 children: [
-                  ListTile(
-                    title: const Text("Home"),
-                    selected: Modular.to.path.endsWith('/dashboard'),
-                    selectedTileColor: Colors.blueGrey[800],
-                    hoverColor: Colors.white,
-                    onTap: () {
-                      Modular.to.pushNamed('./dashboard');
-                    },
-                  ),
-                  ListTile(
-                    title: const Text("Solicitar"),
-                    selected: Modular.to.path.endsWith('/solicitacao'),
-                    selectedTileColor: Colors.blueGrey[800],
-                    hoverColor: Colors.white,
-                    onTap: () {
-                      Modular.to.pushNamed('./solicitacao');
-                    },
-                  ),
-                  ListTile(
-                    title: const Text("Solicitaçóes"),
-                    selected: Modular.to.path.endsWith('/solicitacoes'),
-                    selectedTileColor: Colors.blueGrey[800],
-                    hoverColor: Colors.white,
-                    onTap: () {
-                      Modular.to.pushNamed('./solicitacoes');
-                    },
+                  SizedBox(
+                    width: 250,
+                    child: Column(
+                      children: [
+                        MenuListTile(
+                          title: 'Home',
+                          onTap: () => Modular.to.pushNamed('./dashboard'),
+                          selected: Modular.to.path.endsWith('/dashboard'),
+                          trailing: const Icon(Icons.home),
+                        ),
+                        MenuListTile(
+                          title: 'Solicitação',
+                          onTap: () => Modular.to.pushNamed('./solicitacao'),
+                          selected: Modular.to.path.endsWith('/solicitacao'),
+                          trailing: const Icon(Icons.post_add_rounded),
+                        ),
+                        MenuListTile(
+                          title: 'Solicitações',
+                          onTap: () => Modular.to.pushNamed('./solicitacoes'),
+                          selected: Modular.to.path.endsWith('/solicitacoes'),
+                          trailing: const Icon(Icons.view_list_rounded),
+                        ),
+                        MenuListTile(
+                          title: 'Sair',
+                          onTap: () => Modular.to.pushNamed('/login'),
+                          selected: Modular.to.path.endsWith('/login'),
+                          trailing: const Icon(Icons.logout_rounded),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
