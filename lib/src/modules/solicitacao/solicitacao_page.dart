@@ -1,21 +1,20 @@
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
-import 'package:flutter_entregas/src/core/widgets/dialogs_form/dialog_teste.dart';
 import 'package:flutter_entregas/src/core/widgets/icon_button/custom_icon_buttom.dart';
-import 'package:flutter_entregas/src/modules/home_client/home_controller.dart';
+import 'package:flutter_entregas/src/modules/solicitacao/solicitacao_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SolicitacaoPage extends StatefulWidget {
+  const SolicitacaoPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SolicitacaoPage> createState() => _SolicitacaoPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final controller = Modular.get<HomeController>();
+class _SolicitacaoPageState extends State<SolicitacaoPage> {
+  final controller = Modular.get<SolicitacaoController>();
   RxString nome = "".obs;
 
   @override

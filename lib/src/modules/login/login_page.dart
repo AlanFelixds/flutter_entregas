@@ -1,4 +1,3 @@
-import 'package:flutter_entregas/src/app_module.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_title.dart';
@@ -23,11 +22,11 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       backgroundColor: Colors.blueGrey[900],
-      body: sizeWidget > 600 ? uiDesktop(context) : uiMobile(),
+      body: sizeWidget > 600 ? uiDesktop() : uiMobile(),
     );
   }
 
-  Widget uiDesktop(BuildContext context) {
+  Widget uiDesktop() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

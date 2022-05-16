@@ -1,9 +1,9 @@
 import 'package:flutter_entregas/src/core/database/interface_web_client.dart';
 import 'package:flutter_entregas/src/core/models/product_model.dart';
 
-class HomeRepository {
+class SolicitacaoRepository {
   final IWebClient _webService;
-  HomeRepository(this._webService);
+  SolicitacaoRepository(this._webService);
 
   Future<dynamic> createDelivery(ProductModel itemName) async {
     Map body = itemName.toMap();

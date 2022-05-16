@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_entregas/src/core/database/interface_web_client.dart';
 import 'package:flutter_entregas/src/core/database/web_client_dio.dart';
 import 'package:flutter_entregas/src/core/storage/local.dart';
-import 'package:flutter_entregas/src/modules/home_client/home_controller.dart';
-import 'package:flutter_entregas/src/modules/home_client/home_repository.dart';
 import 'package:flutter_entregas/src/modules/login/login_controller.dart';
 import 'package:flutter_entregas/src/modules/login/login_page.dart';
 import 'package:flutter_entregas/src/modules/login/login_repository.dart';

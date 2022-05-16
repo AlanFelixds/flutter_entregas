@@ -32,7 +32,7 @@ class _SolicitacoesPageState extends State<SolicitacoesPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: const [
-                      Text("Delivery"),
+                      Text("Event"),
                       Text("Status"),
                       Text("Data"),
                       Text("Edit/Delete"),

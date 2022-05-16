@@ -22,26 +22,25 @@ class RootPage extends StatelessWidget {
                       children: [
                         MenuListTile(
                           title: 'Home',
-                          onTap: () => Modular.to.pushNamed('./dashboard'),
-                          selected: Modular.to.path.endsWith('/dashboard'),
+                          onTap: () => Modular.to.pushNamed('/home/dashboard/'),
+                          selected: Modular.to.path.endsWith('/dashboard/'),
                           trailing: const Icon(Icons.home),
                         ),
                         MenuListTile(
                           title: 'Solicitação',
-                          onTap: () => Modular.to.pushNamed('./solicitacao'),
-                          selected: Modular.to.path.endsWith('/solicitacao'),
+                          onTap: () => Modular.to.pushNamed('/home/solicitacao/'),
+                          selected: Modular.to.path.endsWith('/solicitacao/'),
                           trailing: const Icon(Icons.post_add_rounded),
                         ),
                         MenuListTile(
                           title: 'Solicitações',
-                          onTap: () => Modular.to.pushNamed('./solicitacoes'),
-                          selected: Modular.to.path.endsWith('/solicitacoes'),
+                          onTap: () => Modular.to.pushNamed('/home/solicitacoes/'),
+                          selected: Modular.to.path.endsWith('/solicitacoes/'),
                           trailing: const Icon(Icons.view_list_rounded),
                         ),
                         MenuListTile(
                           title: 'Sair',
-                          onTap: () => Modular.to.pushNamed('/login'),
-                          selected: Modular.to.path.endsWith('/login'),
+                          onTap: () => Modular.to.popAndPushNamed('/login'),
                           trailing: const Icon(Icons.logout_rounded),
                         ),
                       ],

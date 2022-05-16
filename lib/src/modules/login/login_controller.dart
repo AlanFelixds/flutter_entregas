@@ -7,7 +7,6 @@ import 'package:flutter_entregas/src/core/storage/local.dart';
 import 'package:flutter_entregas/src/modules/login/login_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get/state_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController {
   LoginRepository loginRepository;
@@ -37,8 +36,8 @@ class LoginController {
       final token = result.split(".")[1];
 
       var payload = utf8.decode(base64.decode(base64.normalize(token)));
-      print(token);
-      print(jsonDecode(payload)['username']);
+      debugPrint(token);
+      debugPrint(jsonDecode(payload)['username']);
 
       // prefes.setString('token', result);
       local.save(chave: 'token', valor: result);
@@ -50,7 +49,7 @@ class LoginController {
     }
   }
 
-  goHome() => Modular.to.navigate('/home/dashboard');
+  goHome() => Modular.to.pushNamed('/home/dashboard/');
 
   goSignup() => Modular.to.pushNamed('/signup');
 }

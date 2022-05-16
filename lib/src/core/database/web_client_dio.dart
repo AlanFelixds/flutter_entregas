@@ -4,7 +4,6 @@ import 'package:flutter_entregas/src/core/database/interface_web_client.dart';
 import 'package:flutter_entregas/src/core/exception/login_exception.dart';
 import 'package:flutter_entregas/src/core/storage/local.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class WebClientDio implements IWebClient {
   final Dio _webDio;

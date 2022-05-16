@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class MenuListTile extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  final bool selected;
+  final bool? selected;
   final Widget trailing;
 
   const MenuListTile({
     Key? key,
     required this.title,
     required this.onTap,
-    required this.selected,
     required this.trailing,
+    this.selected,
   }) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class MenuListTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: ListTile(
         title: Text(title),
-        selected: selected,
+        selected: selected ?? false,
         selectedTileColor: Colors.green[100],
         selectedColor: Colors.white,
         hoverColor: Colors.green[800],
