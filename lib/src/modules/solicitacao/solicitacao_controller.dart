@@ -8,6 +8,7 @@ class SolicitacaoController extends GetxController {
   SolicitacaoRepository solicitacaoRepository;
   SolicitacaoController(this.solicitacaoRepository);
 
+  TextEditingController nomeParticipanteController = TextEditingController();
   TextEditingController itemNameController = TextEditingController();
 
   RxString nome = ''.obs;

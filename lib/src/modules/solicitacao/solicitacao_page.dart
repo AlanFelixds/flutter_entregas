@@ -1,5 +1,6 @@
 import 'package:flutter_entregas/src/core/widgets/custom_button.dart';
 import 'package:flutter_entregas/src/core/widgets/custom_text_form_field_rectangular.dart';
+import 'package:flutter_entregas/src/core/widgets/dialogs_form/dialog_add_participante.dart';
 import 'package:flutter_entregas/src/core/widgets/icon_button/custom_icon_buttom.dart';
 import 'package:flutter_entregas/src/modules/solicitacao/solicitacao_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -20,7 +21,7 @@ class _SolicitacaoPageState extends State<SolicitacaoPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       controller.buscarDeliveries();
     });
     // Future.delayed(const Duration(seconds: 3)).then((value) {});
@@ -95,8 +96,21 @@ class _SolicitacaoPageState extends State<SolicitacaoPage> {
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  CustomIconButtom(icon: const Icon(Icons.person_add_alt_rounded), onPressed: () {}),
-                                  CustomIconButtom(icon: const Icon(Icons.delete_forever_rounded), onPressed: () {}),
+                                  CustomIconButtom(
+                                    icon: const Icon(Icons.person_add_alt_rounded),
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return DialogAddParticipante(controller: controller.nomeParticipanteController);
+                                        },
+                                      );
+                                    },
+                                  ),
+                                  CustomIconButtom(
+                                    icon: const Icon(Icons.delete_forever_rounded),
+                                    onPressed: () {},
+                                  ),
                                 ],
                               ),
                             );
