@@ -19,6 +19,7 @@ class LoginController {
   final TextEditingController registerLoginPasswordController = TextEditingController();
 
   final RxString msg = ''.obs;
+  final RxBool blCheckBox = false.obs;
 
   Future<bool> login() async {
     // final SharedPreferences prefes = await Modular.getAsync<SharedPreferences>();
@@ -49,7 +50,7 @@ class LoginController {
     }
   }
 
-  goHome() => Modular.to.pushNamed('/home/dashboard/');
+  goHome() => Modular.to.navigate('/home/dashboard/');
 
   goSignup() => Modular.to.pushNamed('/signup');
 }
